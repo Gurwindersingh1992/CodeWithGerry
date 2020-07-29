@@ -1,0 +1,6 @@
+framework module Pods_SceneProject {
+  umbrella header "Pods-SceneProject-umbrella.h"
+
+  export *
+  module * { export * }
+}
