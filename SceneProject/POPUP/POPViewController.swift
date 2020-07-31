@@ -56,7 +56,7 @@ class POPViewController: BaseViewController {
     }
     
     @IBAction func onClickOk(_ sender: Any) {
-        delegate.setData(values: "Working fine on Action")
+        delegate.setData(values: viewDescription)
         self.dismiss(animated: true, completion: nil)
         
     }

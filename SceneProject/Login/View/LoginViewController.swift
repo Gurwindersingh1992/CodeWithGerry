@@ -10,7 +10,7 @@ import UIKit
 
 class LoginViewController: BaseViewController {
     
-    //MARK:- View All Outlet
+    //MARK:- View All Outlets.
     
     fileprivate var param = [String : Any]()
     @IBOutlet weak var backView: UIView!
@@ -55,16 +55,15 @@ class LoginViewController: BaseViewController {
     
     
     func onClickLogin(){
+        
         param["email"] = emailTxt.text
         param["phoneNumber"] = passwordTxt.text
         
-        let (status, error) =  MeViewModel.shared.txtHandler(model: Me.init(param: param), isLogin: true)
+        let (status, error) = MeViewModel.shared.txtHandler(model: Me.init(param: param), isLogin: true)
         if  status{
-            
             print("Validation is Done")
         }else{
             self.customAlert(error: error)
-            
         }
     }
     
@@ -79,7 +78,6 @@ class LoginViewController: BaseViewController {
         signupOutlet.dropShadow(shadowValue: 4)
         backView.dropShadow(shadowValue: 4)
 
-        
     }
     
     func customAlert(error : String){
@@ -105,6 +103,6 @@ class LoginViewController: BaseViewController {
 
 extension LoginViewController: onClickAlertAction {
     func setData(values: String) {
-        print("Ok")
+        print(values)
     }
 }

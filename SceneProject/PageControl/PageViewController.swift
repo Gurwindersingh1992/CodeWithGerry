@@ -10,9 +10,11 @@ import UIKit
 
 class PageViewController: UIViewController {
 
+    
+    @IBOutlet weak var pageCollection: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 }
