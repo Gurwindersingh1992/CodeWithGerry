@@ -12,7 +12,7 @@ import UIKit
 
 extension UIView{
     
-    func dropShadow(shadowValue : CGFloat ){
+    func dropShadow(shadowValue : CGFloat){
         // All UIChanges should be on Main Thread Only for Running Smoothly without issues.
         
         DispatchQueue.main.async {

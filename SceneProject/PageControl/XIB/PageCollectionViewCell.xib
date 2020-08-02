@@ -21,24 +21,20 @@
                         <rect key="frame" x="5" y="5" width="356" height="268"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="748" image="firebase_database" translatesAutoresizingMaskIntoConstraints="NO" id="EBl-yL-EtC">
-                                <rect key="frame" x="128" y="10" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="UxB-vu-k0r"/>
-                                    <constraint firstAttribute="height" constant="100" id="euc-ts-Op6"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="10" width="356" height="137.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tu0-kH-Gge">
-                                <rect key="frame" x="10" y="130" width="336" height="58"/>
+                                <rect key="frame" x="10" y="167.5" width="336" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A5w-tK-P5O">
-                                <rect key="frame" x="153" y="208" width="50" height="40"/>
+                                <rect key="frame" x="128" y="208" width="100" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Pk4-bl-jk2"/>
-                                    <constraint firstAttribute="width" constant="50" id="cIQ-jB-iqp"/>
+                                    <constraint firstAttribute="width" constant="100" id="cIQ-jB-iqp"/>
                                 </constraints>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,13 +43,27 @@
                                     <action selector="OnClickNext:" destination="gTV-IL-0wX" eventType="touchUpInside" id="xhG-vR-X8H"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7M-9Z-SBm">
+                                <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="IgE-uM-9KS"/>
+                                    <constraint firstAttribute="width" constant="30" id="S8m-6P-Pjq"/>
+                                </constraints>
+                                <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="OnClickback:" destination="gTV-IL-0wX" eventType="touchUpInside" id="xnW-Li-YL6"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EBl-yL-EtC" secondAttribute="trailing" id="6tW-Vp-HWH"/>
+                            <constraint firstItem="Q7M-9Z-SBm" firstAttribute="top" secondItem="dJ4-5P-ZoV" secondAttribute="top" constant="10" id="8GX-4e-dH2"/>
                             <constraint firstAttribute="trailing" secondItem="tu0-kH-Gge" secondAttribute="trailing" constant="10" id="CJR-BY-eov"/>
+                            <constraint firstItem="Q7M-9Z-SBm" firstAttribute="leading" secondItem="dJ4-5P-ZoV" secondAttribute="leading" constant="10" id="L8S-Am-943"/>
                             <constraint firstItem="A5w-tK-P5O" firstAttribute="top" secondItem="tu0-kH-Gge" secondAttribute="bottom" constant="20" id="Rbn-CJ-6Qn"/>
+                            <constraint firstItem="EBl-yL-EtC" firstAttribute="leading" secondItem="dJ4-5P-ZoV" secondAttribute="leading" id="Tbk-hA-1n3"/>
                             <constraint firstItem="EBl-yL-EtC" firstAttribute="top" secondItem="dJ4-5P-ZoV" secondAttribute="top" constant="10" id="iD0-gy-oWv"/>
-                            <constraint firstItem="EBl-yL-EtC" firstAttribute="centerX" secondItem="dJ4-5P-ZoV" secondAttribute="centerX" id="oWm-Zk-Mc9"/>
                             <constraint firstItem="A5w-tK-P5O" firstAttribute="centerX" secondItem="dJ4-5P-ZoV" secondAttribute="centerX" id="oft-lY-OHj"/>
                             <constraint firstItem="tu0-kH-Gge" firstAttribute="leading" secondItem="dJ4-5P-ZoV" secondAttribute="leading" constant="10" id="qJD-bS-iru"/>
                             <constraint firstItem="tu0-kH-Gge" firstAttribute="top" secondItem="EBl-yL-EtC" secondAttribute="bottom" constant="20" id="sLy-vn-XwY"/>
@@ -71,6 +81,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="366" height="278"/>
             <connections>
+                <outlet property="backOutlet" destination="Q7M-9Z-SBm" id="czj-zA-aop"/>
                 <outlet property="descLbl" destination="tu0-kH-Gge" id="FMK-HO-37f"/>
                 <outlet property="image" destination="EBl-yL-EtC" id="BPf-5c-kdY"/>
                 <outlet property="nextOutlet" destination="A5w-tK-P5O" id="bN6-ZE-jD5"/>
@@ -79,6 +90,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="back" width="512" height="512"/>
         <image name="firebase_database" width="1920" height="1080"/>
     </resources>
 </document>

@@ -66,8 +66,8 @@
             }))
             
             alert.addAction(UIAlertAction(title: "cancel", style: .default, handler: { (handler) in
-                                    
-           }))
+                
+            }))
             self.present(alert, animated: true, completion: nil)
         }
         
@@ -86,7 +86,7 @@
         func openGallery(){
             
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-             let image = UIImagePickerController()
+                let image = UIImagePickerController()
                 image.allowsEditing = true
                 image.delegate = self
                 self.present(image, animated: true, completion: nil)
@@ -115,8 +115,9 @@
         
         
         func initView(){
+            userImage.makeRounded()
             scroll.dropShadow(shadowValue: 4)
-            saveOutlet.dropShadow(shadowValue: 4)
+            saveOutlet.dropShadow(shadowValue: 4 )
         }
         
         func customAlert(error : String){
@@ -165,8 +166,9 @@
             
             let data  = convertFromUIimageTODict(info)
             if let editingImage = data[convertInfoKey((UIImagePickerController.InfoKey.editedImage))] as? UIImage{
-             self.userImage.image = editingImage
-        }
+                self.userImage.image = editingImage
+                userImage.makeRounded()
+            }
             
             picker.dismiss(animated: true, completion: nil)
         }
@@ -183,5 +185,5 @@
         func convertInfoKey(_ input : UIImagePickerController.InfoKey) -> String{
             return input.rawValue
         }
-}
+    }
     

@@ -9,10 +9,13 @@
 import UIKit
 
 protocol onclickBtnProtocol {
-    func setData(model : PageModel)
+    func setData(model : PageModel, isBack : Bool)
 }
 
 class PageCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var backOutlet: UIButton!
+    @IBOutlet weak var backView: UIView!
     var delegate : onclickBtnProtocol?
     @IBOutlet weak var descLbl: UILabel!
     @IBOutlet weak var nextOutlet: UIButton!
@@ -26,11 +29,15 @@ class PageCollectionViewCell: UICollectionViewCell {
         didSet{
             self.image.image = model?.pageImage
             self.descLbl.text = model?.pageDescription
-            
+            self.nextOutlet.dropShadow(shadowValue: 4)
         }
     }
     
     @IBAction func OnClickNext(_ sender: Any) {
-        delegate?.setData(model: model!)
+        delegate?.setData(model: model!, isBack: false)
+    }
+    
+    @IBAction func OnClickback(_ sender: Any) {
+        delegate?.setData(model: model!, isBack: true)
     }
 }
