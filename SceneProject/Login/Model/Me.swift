@@ -13,10 +13,8 @@ class Me {
     var lastName: String?
     var email: String?
     var DOB: String?
-    var maritalStatus: String?
-    var select : String?
-    var phoneNumber: String?
-    var Mood: String?
+    var password : String?
+    var userImage : String?
     
     
     init(param: [String: Any]) {
@@ -24,10 +22,9 @@ class Me {
         self.lastName = param["lastName"] as? String
         self.email = param["email"] as? String
         self.DOB = param["DOB"] as? String
-        self.maritalStatus = param["maritalStatus"] as? String
-        self.select = param["select"] as? String
-        self.phoneNumber = param["phoneNumber"] as? String
-        self.Mood = param["Mood"] as? String
+        self.password = param["password"] as? String
+        self.userImage = param["userImage"] as? String
+       
        
     }
 }

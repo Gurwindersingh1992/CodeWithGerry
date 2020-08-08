@@ -53,20 +53,6 @@ class LoginViewController: BaseViewController {
         roundImage()
     }
     
-    
-    func onClickLogin(){
-        
-        param["email"] = emailTxt.text
-        param["phoneNumber"] = passwordTxt.text
-        
-        let (status, error) = MeViewModel.shared.txtHandler(model: Me.init(param: param), isLogin: true)
-        if  status{
-            print("Validation is Done")
-        }else{
-            self.customAlert(error: error)
-        }
-    }
-    
     func roundImage(){
         
         imageView.makeRounded()
@@ -79,6 +65,34 @@ class LoginViewController: BaseViewController {
         backView.dropShadow(shadowValue: 4)
 
     }
+    
+    func onClickLogin(){
+        
+        param["email"] = emailTxt.text
+        param["password"] = passwordTxt.text
+        
+        let (status, error) = MeViewModel.shared.txtHandler(model: Me.init(param: param), isLogin: true)
+        if  status{
+          signINUSer()
+        }else{
+            self.customAlert(error: error)
+        }
+    }
+    
+    func signINUSer(){
+        
+        guard let userEmail = emailTxt.text, let userPassword = passwordTxt.text  else {
+            return
+        }
+        MeViewModel.shared.onClickSignUser(email: userEmail,  password: userPassword) { (status, error, dataResult) in
+            if status{
+                print(dataResult?.user.displayName)
+            }else {
+                self.customAlert(error: error)
+            }
+        }
+    }
+    
     
     func customAlert(error : String){
         DispatchQueue.main.async {

@@ -34,11 +34,11 @@ class MeViewModel {
         var error = ""
         if loginModel.email?.isEmpty ?? false{
             status = false
-            error = "Please enter emailAddress"
+            error = "Please enter email address"
         }
-       else if loginModel.phoneNumber?.isEmpty ?? false{
+       else if loginModel.password?.isEmpty ?? false{
             status = false
-            error = "Please enter phone number"
+            error = "Please enter password"
         }
         return(status , error)
     }
@@ -49,11 +49,11 @@ class MeViewModel {
         
         if signUpModel.firstName?.isEmpty ?? false{
             status = false
-            error = "Please enter firstName"
+            error = "Please enter first name"
         }
         else if signUpModel.lastName?.isEmpty ?? false{
             status = false
-            error = "Please enter lastName"
+            error = "Please enter last name"
         }
         else if signUpModel.email?.isEmpty ?? false{
             status = false
@@ -64,22 +64,9 @@ class MeViewModel {
             status = false
             error = "Please enter date of birth"
         }
-            
-        else if signUpModel.maritalStatus?.isEmpty ?? false{
+        else if signUpModel.password?.isEmpty ?? false{
             status = false
-            error = "Please enter marital status"
-        }
-        else if signUpModel.select?.isEmpty ?? false{
-            status = false
-            error = "Please enter sex"
-        }
-        else if signUpModel.phoneNumber?.isEmpty ?? false{
-            status = false
-            error = "Please enter Phone number"
-        }
-        else if signUpModel.Mood?.isEmpty ?? false{
-            status = false
-            error = "Please enter Mood"
+            error = "Please enter password"
         }
         
         return(status, error)

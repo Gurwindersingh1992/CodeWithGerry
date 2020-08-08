@@ -8,28 +8,26 @@
     
     import UIKit
     import MobileCoreServices
+    import Firebase
     
     class SignUpViewController: BaseViewController , UNUserNotificationCenterDelegate{
         
         //MARK:- View All Outlets.
         @IBOutlet weak var scroll: UIScrollView!
         
+        
         var param = [String : Any]()
         @IBOutlet weak var saveOutlet: UIButton!
-        @IBOutlet weak var moodTxt: UITextField!
-        @IBOutlet weak var phoneNumberTxt: UITextField!
-        @IBOutlet weak var selectSexTxt: UITextField!
-        @IBOutlet weak var maritalStatusTxt: UITextField!
-        @IBOutlet weak var dobTxt: UITextField!
-        @IBOutlet weak var emailTxt: UITextField!
         @IBOutlet weak var lastNameTxt: UITextField!
         @IBOutlet weak var firstNameTxt: UITextField!
+        @IBOutlet weak var dobTxt: UITextField!
+        @IBOutlet weak var emailTxt: UITextField!
+        @IBOutlet weak var passwordTxt: UITextField!
         @IBOutlet weak var userImage: UIImageView!
         
         var datePicker = UIDatePicker()
         
         //MARK:- View Life cycle.
-        
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -139,21 +137,66 @@
             param["lastName"] =  lastNameTxt.text
             param["email"] =  emailTxt.text
             param["DOB"] =  dobTxt.text
-            param["maritalStatus"] =  maritalStatusTxt.text
-            param["select"] =  selectSexTxt.text
-            param["phoneNumber"] =  phoneNumberTxt.text
-            param["Mood"] =  moodTxt.text
+            param["password"] =  passwordTxt.text
+            
             
             // Use Tuple that return status and error
             
             let (status , error) =  MeViewModel.shared.txtHandler(model: Me.init(param: param), isLogin: false)
             if status{
-                print("Validation is Done")
+              authUser(dict: param)
             }else{
                 self.customAlert(error: error)
             }
         }
+        
+        func authUser(dict : [String : Any]){
+            
+            guard let userEmail = dict["email"] as? String, let userPassword = dict["password"] as? String else {
+                return
+            }
+            MeViewModel.shared.onClickAuthUser(email: userEmail, password: userPassword) { (status, error, dataResult) in
+                if status{
+                    self.setDisplayName(result: dataResult,userDict: dict)
+                }else {
+                    self.customAlert(error: error)
+                }
+            }
+        }
+        
+        func setDisplayName(result : AuthDataResult?, userDict : [String : Any]){
+        
+            if let currentUser = Auth.auth().currentUser?.createProfileChangeRequest(){
+                if let name = firstNameTxt.text{
+                      currentUser.displayName = name
+                }
+                currentUser.commitChanges { (error) in
+                    if let error  = error{
+                        self.customAlert(error: error.localizedDescription)
+                    }
+                    else {
+                        
+                        self.setImageandData(user: result!, result: result, userDict: userDict)
+                    }
+                }
+            }
+        }
+        
+        func setImageandData(user: AuthDataResult,result : AuthDataResult?, userDict : [String : Any]){
+            let model = Me(param: userDict)
+            if let image = userImage{
+                MeViewModel.shared.onClickUserImageAndData(user: user,userImage: image, values: model) { (status, error, message) in
+                    if status{
+                        print(message)
+                    }else{
+                        self.customAlert(error: error)
+                    }
+                }
+            }
+        }
+        
     }
+    
     extension SignUpViewController : onClickAlertAction{
         func setData(values: String) {
             print(values)
